@@ -1,6 +1,6 @@
 -- @Date:   2017-06-11T11:07:04+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-11T13:26:24+02:00
+-- @Last modified time: 2017-06-11T18:33:29+02:00
 -- @License: GNU General Public License v3.0
 
 RegisterNetEvent('ft_menuBuilder:Open')
@@ -24,21 +24,21 @@ AddEventHandler('ft_menuBuilder:Close', function()
 end)
 
 RegisterNetEvent('ft_menuBuilder:IsOpened', callback)
-AddEventHandler('ft:ClientReady', function()
+AddEventHandler('ft_menuBuilder:IsOpened', function()
   callback(MenusManager.opened)
 end)
 
 RegisterNetEvent('ft_menuBuilder:Back')
-AddEventHandler('ft:ClientReady', function()
+AddEventHandler('ft_menuBuilder:Back', function()
   MenusManager:Back()
 end)
 
 RegisterNetEvent('ft_menuBuilder:Current', callback)
-AddEventHandler('ft:ClientReady', function()
+AddEventHandler('ft_menuBuilder:Current', function()
   callback(MenusManager.curent)
 end)
 
 RegisterNetEvent('ft_menuBuilder:Freeze')
-AddEventHandler('ft:ClientReady', function()
-  MenusManager:Freeze()
+AddEventHandler('ft_menuBuilder:Freeze', function(status)
+  MenusManager:Freeze(status)
 end)

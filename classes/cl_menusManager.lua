@@ -1,6 +1,6 @@
 -- @Date:   2017-06-11T09:33:07+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-11T17:40:29+02:00
+-- @Last modified time: 2017-06-11T18:32:35+02:00
 -- @License: GNU General Public License v3.0
 
 -- Constructor
@@ -32,12 +32,16 @@ setmetatable(MenusManager, {
   end
 })
 
+-- Check table size
 function MenusManager:TableLength(T)
-  local count = 0
-  for _ in pairs(T) do count = count + 1 end
-  return count
-end
 
+  local count = 0
+  for _ in pairs(T) do
+    count = count + 1
+  end
+  return count
+
+end
 
 -- Reset Values
 function MenusManager:Reset()
@@ -253,7 +257,9 @@ function MenusManager:Exec()
         self:Next(infos.menu)
       end
 
-      if infos.close ~= nil and infos.close then
+      if infos.freeze ~= nil and infos.freeze then
+        self.freeze = true
+      elseif infos.close ~= nil and infos.close then
         self:Close()
       elseif infos.back ~= nil and infos.back then
         self:Back()
