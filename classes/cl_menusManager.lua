@@ -1,6 +1,6 @@
 -- @Date:   2017-06-11T09:33:07+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-11T18:32:35+02:00
+-- @Last modified time: 2017-06-11T19:38:41+02:00
 -- @License: GNU General Public License v3.0
 
 -- Constructor
@@ -297,12 +297,13 @@ function MenusManager:Show()
       local posX = settings.x or self.conf.x
       local posY = settings.y or self.conf.y
 
-      local y = posY + 0.12  -- Position for buttonss
+      local y = posY -- Position for buttonss
       local selected = false
 
       -- Big title
       if settings.title ~= nil then
         Ui.DrawText(settings.title, 1, 1, posX, posY, 1.0, 255, 255, 255, 255)
+        y = y + 0.12
       end
 
       -- Top menu
