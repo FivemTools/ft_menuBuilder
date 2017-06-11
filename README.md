@@ -10,8 +10,6 @@ Example:
 - ft_menuBuilder
 ```
 
-Import database.sql file to database
-
 ### Documentation
 
 [Wiki](https://github.com/FivemTools/ft_menuBuilder/wiki)
