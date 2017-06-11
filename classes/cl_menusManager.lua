@@ -1,6 +1,6 @@
 -- @Date:   2017-06-11T09:33:07+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-11T14:08:21+02:00
+-- @Last modified time: 2017-06-11T17:40:29+02:00
 -- @License: GNU General Public License v3.0
 
 -- Constructor
@@ -47,6 +47,8 @@ function MenusManager:Reset()
     self.conf.from = 1
     self.conf.to = 10
     self.freeze = false
+    self.x = 0.9
+    self.y = 0.25
 
   end)
 end
@@ -63,6 +65,19 @@ end
 -- Add new menu
 function MenusManager:Add(name, buttons, settings)
   Citizen.CreateThread(function()
+
+    if settings.top ~= nil and settings.top then
+      settings.y = 0
+      settings.top = nil
+    end
+
+    if settings.left ~= nil and settings.left then
+      settings.x = 0 + (self.conf.width / 2)
+      settings.horizontalPosition = nil
+    elseif settings.center ~= nil and settings.center then
+      settings.x = 0.9 / 2
+      settings.horizontalPosition = nil
+    end
 
     self.list[name] = {
       buttons = buttons,
@@ -81,6 +96,8 @@ function MenusManager:Next(name)
         name = self.curent,
         from = self.conf.from,
         to = self.conf.to,
+        x = self.conf.x,
+        y = self.conf.y,
         selectedbutton = self.selectedbutton,
       }
       table.insert(self.backMenu, data) -- Check if curent menu is backMenu
@@ -270,17 +287,21 @@ function MenusManager:Show()
 
       local countBtns = MenusManager:TableLength(buttons)
 
-      local y = self.conf.y + 0.12  -- Position
+      -- Position
+      local posX = settings.x or self.conf.x
+      local posY = settings.y or self.conf.y
+
+      local y = posY + 0.12  -- Position for buttonss
       local selected = false
 
       -- Big title
       if settings.title ~= nil then
-        Ui.DrawText(settings.title, 1, 1, self.conf.x, self.conf.y, 1.0, 255, 255, 255, 255)
+        Ui.DrawText(settings.title, 1, 1, posX, posY, 1.0, 255, 255, 255, 255)
       end
 
       -- Top menu
       settings.count = self.selectedbutton .. "/" .. countBtns
-      Ui.DrawMenuTitle(settings, self.conf.x, self.conf.y + 0.08, self.conf.width, self.conf.height)
+      Ui.DrawMenuTitle(settings, posX, posY + 0.08, self.conf.width, self.conf.height)
 
       for i, button in pairs(buttons) do
 
@@ -291,7 +312,7 @@ function MenusManager:Show()
             selected = false
           end
 
-          Ui.DrawMenuButton(button, self.conf.x, y, self.conf.width, self.conf.height, selected)
+          Ui.DrawMenuButton(button, posX, y, self.conf.width, self.conf.height, selected)
           y = y + 0.04
         end
       end
