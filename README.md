@@ -12,6 +12,7 @@ Example:
 
 ### Documentation
 
+[Exemple](https://github.com/FivemTools/ft_menuExemple)
 [Wiki](https://github.com/FivemTools/ft_menuBuilder/wiki)
 
 ## License
