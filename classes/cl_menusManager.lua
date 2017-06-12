@@ -1,6 +1,6 @@
 -- @Date:   2017-06-11T09:33:07+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-11T19:38:41+02:00
+-- @Last modified time: 2017-06-12T15:39:34+02:00
 -- @License: GNU General Public License v3.0
 
 -- Constructor
@@ -9,6 +9,7 @@ MenusManager.__index = MenusManager
 
 -- Meta table for users
 setmetatable(MenusManager, {
+
   __call = function(self)
     local p = {}
     p.opened = false
@@ -30,6 +31,7 @@ setmetatable(MenusManager, {
     }
     return setmetatable(p, MenusManager)
   end
+
 })
 
 -- Check table size
@@ -246,19 +248,30 @@ function MenusManager:Exec()
       local menu = self.list[curent]
       local infos = menu.buttons[selected]
 
+      -- Execute function
       if infos.callback ~= nil then
         local callback = infos.callback
         callback(infos.data)
-      elseif infos.eventServer ~= nil then
+      end
+
+      -- Send to server event
+      if infos.eventServer ~= nil then
         TriggerServerEvent(infos.eventServer, infos.data)
-      elseif infos.eventClient ~= nil then
+      end
+
+      -- Send to client event
+      if infos.eventClient ~= nil then
         TriggerEvent(infos.eventClient, infos.data)
-      elseif infos.menu ~= nil and self.list[infos.menu] ~= nil then
+      end
+
+      -- Go to next menu
+      if infos.menu ~= nil and self.list[infos.menu] ~= nil then
         self:Next(infos.menu)
       end
 
+      --
       if infos.freeze ~= nil and infos.freeze then
-        self.freeze = true
+        self.freeze = infos.freeze
       elseif infos.close ~= nil and infos.close then
         self:Close()
       elseif infos.back ~= nil and infos.back then
@@ -353,11 +366,11 @@ function MenusManager:Show()
         end
 
         -- Back
-        if IsControlJustPressed(2, 177) and not IsControlJustPressed(2, 322) and not IsControlJustPressed(2, 24) and GetLastInputMethod(2) and not self.gameMenu then
+        if IsControlJustPressed(2, 177) and not IsControlJustPressed(2, 322) and not IsControlJustPressed(2, 24) and not IsControlJustPressed(0, 25) and GetLastInputMethod(2) and not self.gameMenu then
           self:BackBtn()
           PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
         end
-        if IsControlJustPressed(2, 177) and not IsControlJustPressed(2, 322) and not IsControlJustPressed(2, 24) and GetLastInputMethod(2) and not self.gameMenu then
+        if IsControlJustPressed(2, 177) and not IsControlJustPressed(2, 322) and not IsControlJustPressed(2, 24) and not IsControlJustPressed(0, 25)  and GetLastInputMethod(2) and not self.gameMenu then
           self.conf.backlock = false
         end
 
