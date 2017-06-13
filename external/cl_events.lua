@@ -1,44 +1,44 @@
 -- @Date:   2017-06-11T11:07:04+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-12T16:52:28+02:00
+-- @Last modified time: 2017-06-13T11:15:50+02:00
 -- @License: GNU General Public License v3.0
 
-RegisterNetEvent('ft_menuBuilder:Open')
-AddEventHandler('ft_menuBuilder:Open', function(name)
+RegisterNetEvent('ft_menuBuilder:ClOpen')
+AddEventHandler('ft_menuBuilder:ClOpen', function(name)
   MenusManager:Open(name)
 end)
 
-RegisterNetEvent('ft_menuBuilder:Next')
-AddEventHandler('ft_menuBuilder:Next', function(name)
+RegisterNetEvent('ft_menuBuilder:ClNext')
+AddEventHandler('ft_menuBuilder:ClNext', function(name)
   MenusManager:Next(name)
 end)
 
-RegisterNetEvent('ft_menuBuilder:Add')
+RegisterNetEvent('ft_menuBuilder:ClAdd')
 AddEventHandler('ft_menuBuilder:Add', function(name, buttons, settings)
   MenusManager:Add(name, buttons, settings)
 end)
 
-RegisterNetEvent('ft_menuBuilder:Close')
-AddEventHandler('ft_menuBuilder:Close', function()
+RegisterNetEvent('ft_menuBuilder:ClClose')
+AddEventHandler('ft_menuBuilder:ClClose', function()
   MenusManager:Close()
 end)
 
-RegisterNetEvent('ft_menuBuilder:IsOpened')
-AddEventHandler('ft_menuBuilder:IsOpened', function(callback)
+RegisterNetEvent('ft_menuBuilder:ClIsOpened')
+AddEventHandler('ft_menuBuilder:ClIsOpened', function(callback)
   callback(MenusManager.opened)
 end)
 
-RegisterNetEvent('ft_menuBuilder:Back')
-AddEventHandler('ft_menuBuilder:Back', function()
+RegisterNetEvent('ft_menuBuilder:ClBack')
+AddEventHandler('ft_menuBuilder:ClBack', function()
   MenusManager:Back()
 end)
 
-RegisterNetEvent('ft_menuBuilder:Current')
+RegisterNetEvent('ft_menuBuilder:ClCurrent')
 AddEventHandler('ft_menuBuilder:Current', function(callback)
   callback(MenusManager.curent)
 end)
 
-RegisterNetEvent('ft_menuBuilder:Freeze')
+RegisterNetEvent('ft_menuBuilder:ClFreeze')
 AddEventHandler('ft_menuBuilder:Freeze', function(status)
   MenusManager:Freeze(status)
 end)
