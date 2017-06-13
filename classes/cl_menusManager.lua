@@ -1,6 +1,6 @@
 -- @Date:   2017-06-11T09:33:07+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-12T15:39:34+02:00
+-- @Last modified time: 2017-06-13T17:29:51+02:00
 -- @License: GNU General Public License v3.0
 
 -- Constructor
@@ -170,6 +170,15 @@ end
 function MenusManager:Close()
   Citizen.CreateThread(function()
 
+    local name = self.curent
+    local data = self.list[name]
+    local settings = data.settings
+
+    -- No closable menu for back button
+    if settings.closable ~= nil and settings.closable == false then
+      return
+    end
+
     self:Reset()
     self.backMenu = {}
     self.curent = nil
@@ -192,7 +201,7 @@ function MenusManager:BackBtn()
     local data = self.list[name]
     local settings = data.settings
 
-    -- No closable manu for back button
+    -- No closable menu for back button
     if settings.closable ~= nil and settings.closable == false then
       return
     end
