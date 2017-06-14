@@ -1,11 +1,11 @@
 -- @Date:   2017-06-13T20:59:37+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-14T15:29:14+02:00
+-- @Last modified time: 2017-06-14T17:47:14+02:00
 -- @License: GNU General Public License v3.0
 
 -- @Date:   2017-06-11T09:33:07+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-14T15:29:14+02:00
+-- @Last modified time: 2017-06-14T17:47:14+02:00
 -- @License: GNU General Public License v3.0
 
 menus = {
@@ -120,6 +120,20 @@ function Add(name, buttons, settings)
 
   end)
 end
+
+-- Add button
+function AddButton(name, button)
+  Citizen.CreateThread(function()
+
+    if menus.list[name] ~= nil then
+
+      table.insert(menus.list[name].buttons, button)
+
+    end
+
+  end)
+end
+
 
 -- Next menu
 function Next(name)
