@@ -1,5 +1,11 @@
 # ft_menuBuilder
 
+### Prerequisites
+
+What things you need to install this script them
+
+ - [ft_ui](https://github.com/FivemTools/ft_ui)
+
 ### Installing
 
 Put the folder where you want it and add it to the citmp-server.yml file
