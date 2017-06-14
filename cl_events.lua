@@ -1,6 +1,6 @@
 -- @Date:   2017-06-11T11:07:04+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-14T17:48:01+02:00
+-- @Last modified time: 2017-06-14T21:41:01+02:00
 -- @License: GNU General Public License v3.0
 
 RegisterNetEvent('ft_menuBuilder:ClOpen')
@@ -46,4 +46,9 @@ end)
 RegisterNetEvent('ft_menuBuilder:ClFreeze')
 AddEventHandler('ft_menuBuilder:ClFreeze', function(status)
   Freeze(status)
+end)
+
+RegisterNetEvent('ft_menuBuilder:ClGenerator')
+AddEventHandler('ft_menuBuilder:ClGenerator', function(data)
+  Generator(data)
 end)

@@ -1,11 +1,6 @@
 -- @Date:   2017-06-13T20:59:37+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-14T17:47:14+02:00
--- @License: GNU General Public License v3.0
-
--- @Date:   2017-06-11T09:33:07+02:00
--- @Project: FiveM Tools
--- @Last modified time: 2017-06-14T17:47:14+02:00
+-- @Last modified time: 2017-06-14T21:41:37+02:00
 -- @License: GNU General Public License v3.0
 
 menus = {
@@ -50,12 +45,12 @@ function DrawMenuButton(data, x, y, width, height, selected)
   end)
 end
 
-function MenuGenerator(data)
+function Generator(data)
   Citizen.CreateThread(function()
 
     if type(data) == "table" then
-      for menuName, menu in pairs(data) do
-        Add(menuName, menu.buttons, menu.settings)
+      for name, menu in pairs(data) do
+        Add(name, menu.buttons, menu.settings)
       end
     end
 
