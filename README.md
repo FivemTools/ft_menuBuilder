@@ -28,4 +28,5 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Acknowledgments
 
-* LH_Lawliet (call events idea)
+* LH_Lawliet
+* Mirardes

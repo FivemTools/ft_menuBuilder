@@ -1,6 +1,6 @@
 -- @Date:   2017-06-13T20:59:37+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-15T14:10:51+02:00
+-- @Last modified time: 2017-06-15T17:38:23+02:00
 -- @License: GNU General Public License v3.0
 
 menus = {
@@ -132,7 +132,7 @@ function CleanButtons(name)
   Citizen.CreateThread(function()
 
     if menus.list[name] ~= nil then
-      menus.list[name].buttons = nil
+      menus.list[name].buttons = {}
     end
 
   end)
@@ -143,9 +143,7 @@ function AddButton(name, button)
   Citizen.CreateThread(function()
 
     if menus.list[name] ~= nil then
-
       table.insert(menus.list[name].buttons, button)
-
     end
 
   end)
