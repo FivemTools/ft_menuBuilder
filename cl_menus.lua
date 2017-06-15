@@ -1,6 +1,6 @@
 -- @Date:   2017-06-13T20:59:37+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-15T14:09:35+02:00
+-- @Last modified time: 2017-06-15T14:10:51+02:00
 -- @License: GNU General Public License v3.0
 
 menus = {
@@ -128,7 +128,7 @@ function Remove(name)
 end
 
 -- Clean buttons
-function CleanButton(name)
+function CleanButtons(name)
   Citizen.CreateThread(function()
 
     if menus.list[name] ~= nil then
