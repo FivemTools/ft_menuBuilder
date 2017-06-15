@@ -1,6 +1,6 @@
 -- @Date:   2017-06-11T11:07:04+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-15T14:14:00+02:00
+-- @Last modified time: 2017-06-15T14:16:35+02:00
 -- @License: GNU General Public License v3.0
 
 RegisterNetEvent('ft_menuBuilder:ClOpen')
@@ -30,7 +30,7 @@ end)
 
 RegisterNetEvent('ft_menuBuilder:ClCleanButtons')
 AddEventHandler('ft_menuBuilder:ClCleanButtons', function(name)
-  CleanButtons(name, button)
+  CleanButtons(name)
 end)
 
 RegisterNetEvent('ft_menuBuilder:ClClose')
