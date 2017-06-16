@@ -1,6 +1,6 @@
 -- @Date:   2017-06-13T20:59:37+02:00
 -- @Project: FiveM Tools
--- @Last modified time: 2017-06-15T17:38:23+02:00
+-- @Last modified time: 2017-06-16T18:13:47+02:00
 -- @License: GNU General Public License v3.0
 
 menus = {
@@ -8,7 +8,7 @@ menus = {
   backMenu = {},
   curent = nil,
   list = {},
-  selectedbutton = 0,
+  selectedButton = 0,
   gameMenu = false,
   freeze = false,
   conf = {
@@ -16,7 +16,7 @@ menus = {
     y = 0.25,
     width = 0.2,
     height = 0.04,
-    buttons = 10,
+    maxButton = 3,
     from = 1,
     to = 10,
     backlock = false
@@ -39,7 +39,7 @@ function DrawMenuButton(data, x, y, width, height, selected)
     DrawRect(x, y, width, height, color.rect.red, color.rect.blue, color.rect.green, color.rect.alpha)
 
     if data.subText ~= nil then
-      exports.ft_ui:Text(data.subText, 0, 0, x + width / 2 - 0.0385, y - height / 2 + 0.0035, 0.4, 0, 0, 0, 255)
+      exports.ft_ui:Text(data.subText, 0, 0, x + width / 2 - 0.0385, y - height / 2 + 0.0035, 0.4, color.text.red, color.text.blue, color.text.green, 255)
     end
 
   end)
@@ -72,12 +72,13 @@ end
 function Reset()
   Citizen.CreateThread(function()
 
-    menus.selectedbutton = 0
+    menus.selectedButton = 0
     menus.freeze = false
     menus.conf.from = 1
     menus.conf.to = 10
     menus.conf.x = 0.9
     menus.conf.y = 0.25
+    menus.conf.maxButton = 5
 
   end)
 end
@@ -161,7 +162,8 @@ function Next(name)
         to = menus.conf.to,
         x = menus.conf.x,
         y = menus.conf.y,
-        selectedbutton = menus.selectedbutton,
+        maxButton = menus.conf.maxButton,
+        selectedButton = menus.selectedButton,
       }
       table.insert(menus.backMenu, data) -- Check if curent menu is backMenu
 
@@ -190,8 +192,8 @@ function Back()
       menus.conf.to = data.to
     end
 
-    if data.selectedbutton ~= nil then
-      menus.selectedbutton = data.selectedbutton
+    if data.selectedButton ~= nil then
+      menus.selectedButton = data.selectedButton
     end
 
     menus.curent = data.name
@@ -281,7 +283,7 @@ end
 function Hover()
   Citizen.CreateThread(function()
 
-    local selected = menus.selectedbutton
+    local selected = menus.selectedButton
     if selected ~= 0 then
 
       local curent = menus.curent
@@ -307,7 +309,7 @@ end
 function Exec()
   Citizen.CreateThread(function()
 
-    local selected = menus.selectedbutton
+    local selected = menus.selectedButton
     if selected ~= 0 then
 
       local curent = menus.curent
@@ -375,6 +377,7 @@ function Show()
       -- Position
       local posX = settings.x or menus.conf.x
       local posY = settings.y or menus.conf.y
+      local maxButton = settings.maxButton or menus.conf.maxButton
 
       local y = posY -- Position for buttonss
       local selected = false
@@ -386,7 +389,7 @@ function Show()
       end
 
       -- Top menu
-      local count = menus.selectedbutton .. "/" .. countBtns
+      local count = menus.selectedButton .. "/" .. countBtns
 
       -- Sub title
       posY = posY + 0.08
@@ -399,7 +402,7 @@ function Show()
       for i, button in pairs(buttons) do
 
         if i >= menus.conf.from and i <= menus.conf.to then
-          if i == menus.selectedbutton then
+          if i == menus.selectedButton then
             selected = true
           else
             selected = false
@@ -414,10 +417,10 @@ function Show()
 
         -- Down
         if IsControlJustPressed(2, 187) and GetLastInputMethod(2) and not menus.gameMenu then
-          if menus.selectedbutton < countBtns then
+          if menus.selectedButton < countBtns then
 
-            menus.selectedbutton = menus.selectedbutton + 1
-            if countBtns > 10 and menus.selectedbutton > menus.conf.to then
+            menus.selectedButton = menus.selectedButton + 1
+            if menus.selectedButton > menus.conf.to then
               menus.conf.to = menus.conf.to + 1
               menus.conf.from = menus.conf.from + 1
             end
@@ -430,10 +433,10 @@ function Show()
 
         -- Up
         if IsControlJustPressed(2, 188) and GetLastInputMethod(2) and not menus.gameMenu then
-          if menus.selectedbutton > 1 then
+          if menus.selectedButton > 1 then
 
-            menus.selectedbutton = menus.selectedbutton - 1
-            if countBtns > 10 and menus.selectedbutton < menus.conf.from then
+            menus.selectedButton = menus.selectedButton - 1
+            if menus.selectedButton < menus.conf.from then
               menus.conf.from = menus.conf.from - 1
               menus.conf.to = menus.conf.to - 1
             end
