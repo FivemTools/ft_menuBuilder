@@ -267,7 +267,7 @@ function BackBtn()
 
     if settings.back ~= nil then
       local callback = settings.back
-      callback()
+      callback(settings.data)
     end
 
     local backNumber = TableLength(menus.backMenu)
