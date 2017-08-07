@@ -118,7 +118,7 @@ function Add(name, buttons, settings)
 end
 
 -- Remove menu
-function Remove(name)
+function RemoveMenu(name)
   Citizen.CreateThread(function()
 
     if menus.list[name] ~= nil then
@@ -144,12 +144,29 @@ function AddButton(name, button)
   Citizen.CreateThread(function()
 
     if menus.list[name] ~= nil then
-      table.insert(menus.list[name].buttons, button)
+    	if type(button) == "table" then
+    		local buttons = buttons
+	      	for _, button in pairs (buttons) do
+	        	table.insert(menus.list[name].buttons, button)
+	      	end
+    	else
+      		table.insert(menus.list[name].buttons, button)
+    	end 
     end
 
   end)
 end
 
+-- remove button
+function RemoveButton(name, button)
+  Citizen.CreateThread(function()
+
+    if menus.list[name] ~= nil then
+      table.remove(menus.list[name].buttons, button)
+    end
+
+  end)
+end
 
 -- Next menu
 function Next(name)

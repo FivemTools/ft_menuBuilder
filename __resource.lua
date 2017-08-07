@@ -31,5 +31,7 @@ exports {
   "AddButton",
   "CleanButtons",
   "Generator",
+  "RemoveMenu",
+  "RemoveButton",
 
 }
