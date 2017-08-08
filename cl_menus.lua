@@ -404,7 +404,8 @@ function Show()
 
       -- Big title
       if settings.title ~= nil then
-        exports.ft_ui:Text(settings.title, 1, 1, posX, posY, 1.0, 255, 255, 255, 255)
+      	local titleScale = settings.titleScale or 1.0
+        exports.ft_ui:Text(settings.title, 1, 1, posX, posY, titleScale, 255, 255, 255, 255)
         y = y + 0.12
       end
 
