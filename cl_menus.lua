@@ -35,11 +35,14 @@ function DrawMenuButton(data, x, y, width, height, selected)
       color.rect = { red = 0, blue = 0, green = 0, alpha = 150 }
     end
 
-    exports.ft_ui:Text(data.text, 0, 0, x - width / 2 + 0.005, y - height / 2 + 0.0035, 0.4, color.text.red, color.text.blue, color.text.green, 255)
+    local textScale = data.textScale or 0.4
+    local subTextScale = data.subTextScale or 0.4
+
+    exports.ft_ui:Text(data.text, 0, 0, x - width / 2 + 0.005, y - height / 2 + 0.0035, textScale, color.text.red, color.text.blue, color.text.green, 255)
     DrawRect(x, y, width, height, color.rect.red, color.rect.blue, color.rect.green, color.rect.alpha)
 
     if data.subText ~= nil then
-      exports.ft_ui:Text(data.subText, 0, 0, x + width / 2 - 0.0385, y - height / 2 + 0.0035, 0.4, color.text.red, color.text.blue, color.text.green, 255)
+      exports.ft_ui:Text(data.subText, 0, 0, x + width / 2 - 0.0385, y - height / 2 + 0.0035, subTextScale, color.text.red, color.text.blue, color.text.green, 255)
     end
 
   end)
@@ -110,8 +113,8 @@ function Add(name, buttons, settings)
     end
 
     menus.list[name] = {
-      buttons = buttons,
-      settings = settings,
+      buttons = buttons or {},
+      settings = settings or {},
     }
 
   end)
