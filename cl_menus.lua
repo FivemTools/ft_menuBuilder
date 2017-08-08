@@ -35,8 +35,8 @@ function DrawMenuButton(data, x, y, width, height, selected)
       color.rect = { red = 0, blue = 0, green = 0, alpha = 150 }
     end
 
-    local textScale = data.textScale or 3.6
-    local subTextScale = data.subTextScale or 0.4
+    local textScale = data.textScale or 0.36
+    local subTextScale = data.subTextScale or 0.36
 
     exports.ft_ui:Text(data.text, 0, 0, x - width / 2 + 0.005, y - height / 2 + 0.0035, textScale, color.text.red, color.text.blue, color.text.green, 255)
     DrawRect(x, y, width, height, color.rect.red, color.rect.blue, color.rect.green, color.rect.alpha)
