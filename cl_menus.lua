@@ -145,7 +145,7 @@ function AddButton(name, button)
 
     if menus.list[name] ~= nil then
     	if type(button) == "table" then
-    		local buttons = buttons
+    		local buttons = button
 	      	for _, button in pairs (buttons) do
 	        	table.insert(menus.list[name].buttons, button)
 	      	end
